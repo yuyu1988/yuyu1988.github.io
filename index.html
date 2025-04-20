@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribución de Marcos</title>
+    <style>
+        .contenedor {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            border: 2px solid black; /* Borde general */
+        }
+        .encabezado {
+            height: 15%;
+            background-color: lightgray;
+            border-bottom: 2px solid black;
+        }
+        .contenido {
+            display: flex;
+            flex: 1;
+        }
+        .principal {
+            flex: 3;
+            background-color: white;
+            border-right: 2px solid black;
+        }
+        .lateral {
+            flex: 1;
+            background-color: lightblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 2px solid black; /* Bordes para los iframes */
+            box-sizing: border-box; /* Evita que el borde afecte el tamaño total */
+        }
+        .boton {
+            display: block;
+            width: 80%;
+            margin: 5px 0;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            background-color: blue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .boton:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <!-- Marco del encabezado -->
+        <div class="encabezado">
+            <iframe src="encabezado.html"></iframe>
+        </div>
+        
+        <div class="contenido">
+            <!-- Marco principal donde se cargarán los contenidos -->
+            <div class="principal">
+                <iframe id="marco-principal" src="principal.html"></iframe>
+            </div>
+
+            <!-- Marco lateral con botones para cambiar el contenido del marco principal -->
+            <div class="lateral">
+                <button class="boton" onclick="cargarContenido('principal.html')">Principal</button>
+                <button class="boton" onclick="cargarContenido('mision.html')">Misión</button>
+                <button class="boton" onclick="cargarContenido('vision.html')">Visión</button>
+                <button class="boton" onclick="cargarContenido('politicas.html')">Políticas</button>
+                <button class="boton" onclick="cargarContenido('productos.html')">Productos</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function cargarContenido(pagina) {
+            var marcoPrincipal = document.getElementById('marco-principal');  
+            if (marcoPrincipal) {
+                marcoPrincipal.src = pagina;
+            } else {
+                alert("No se encontró el iframe de la sección principal.");
+            }
+        }
+    </script>
+
+</body>
+</html>
